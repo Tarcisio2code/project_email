@@ -6,9 +6,9 @@
 <br>
   
 **Requirements**
->- [ ] _**Send Mail**: When a user submits the email composition form, add JavaScript code to actually send the email._
->   - [ ] _You’ll likely want to make a POST request to /emails, passing in values for recipients, subject, and body._
->   - [ ] _Once the email has been sent, load the user’s sent mailbox._
+>- [x] _**Send Mail**: When a user submits the email composition form, add JavaScript code to actually send the email._
+>   - [x] _You’ll likely want to make a POST request to /emails, passing in values for recipients, subject, and body._
+>   - [x] _Once the email has been sent, load the user’s sent mailbox._
 >
 >- [ ] _**Mailbox**: When a user visits their Inbox, Sent mailbox, or Archive, load the appropriate mailbox._
 >   - [ ] _You’ll likely want to make a GET request to /emails/<mailbox> to request the emails for a particular mailbox._
@@ -37,7 +37,7 @@
 <br>
 
 **Progress**   
-![](https://geps.dev/progress/0)   
+![](https://geps.dev/progress/1)   
   
 <br>
 <br>
