@@ -46,6 +46,9 @@ function load_mailbox(mailbox) {
           <h6>Subject: ${currentMail.subject}</h5>
           <p class = "text-muted">${currentMail.timestamp}</p>
         `;
+        // Change current email background-color
+        newEmail.className = currentMail.read ? 'read': 'unread';
+        // Show email details
         newEmail.addEventListener('click', function() {
             console.log('This newEmail has been clicked!')
         });

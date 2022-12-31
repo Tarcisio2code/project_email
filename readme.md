@@ -11,12 +11,12 @@
 >   - [x] _Once the email has been sent, load the user’s sent mailbox._
 >
 >- [ ] _**Mailbox**: When a user visits their Inbox, Sent mailbox, or Archive, load the appropriate mailbox._
->   - [ ] _You’ll likely want to make a GET request to /emails/<mailbox> to request the emails for a particular mailbox._
->   - [ ] _When a mailbox is visited, the application should first query the API for the latest emails in that mailbox._
->   - [ ] _When a mailbox is visited, the name of the mailbox should appear at the top of the page (this part is done for you)._
+>   - [x] _You’ll likely want to make a GET request to /emails/<mailbox> to request the emails for a particular mailbox._
+>   - [X] _When a mailbox is visited, the application should first query the API for the latest emails in that mailbox._
+>   - [X] _When a mailbox is visited, the name of the mailbox should appear at the top of the page (this part is done for you)._
 >   - [ ] _Each email should then be rendered in its own box (e.g. as a `div` with a border) that displays who the email is from, what the subject line is, and the timestamp of the email._
 >
->   - [ ] _If the email is unread, it should appear with a white background. If the email has been read, it should appear with a gray background._
+>   - [x] _If the email is unread, it should appear with a white background. If the email has been read, it should appear with a gray background._
 >- [ ] _**Archive and Unarchive**: Allow users to archive and unarchive emails that they have received._
 >   - [ ] _When viewing an Inbox email, the user should be presented with a button that lets them archive the email.When viewing an Archive email, the user should be presented with a button that lets them unarchive the email. This requirement does not apply to emails in the Sent mailbox._
 >   - [ ] _Recall that you can send a PUT request to /emails/<email_id> to mark an email as archived or unarchived._
@@ -37,7 +37,7 @@
 <br>
 
 **Progress**   
-![](https://geps.dev/progress/1)   
+![](https://geps.dev/progress/5)   
   
 <br>
 <br>
