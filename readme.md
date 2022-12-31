@@ -13,8 +13,8 @@
 >- [ ] _**Mailbox**: When a user visits their Inbox, Sent mailbox, or Archive, load the appropriate mailbox._
 >   - [x] _You’ll likely want to make a GET request to /emails/<mailbox> to request the emails for a particular mailbox._
 >   - [X] _When a mailbox is visited, the application should first query the API for the latest emails in that mailbox._
->   - [X] _When a mailbox is visited, the name of the mailbox should appear at the top of the page (this part is done for you)._
->   - [ ] _Each email should then be rendered in its own box (e.g. as a `div` with a border) that displays who the email is from, what the subject line is, and the timestamp of the email._
+>   - [x] _When a mailbox is visited, the name of the mailbox should appear at the top of the page (this part is done for you)._
+>   - [x] _Each email should then be rendered in its own box (e.g. as a `div` with a border) that displays who the email is from, what the subject line is, and the timestamp of the email._
 >
 >   - [x] _If the email is unread, it should appear with a white background. If the email has been read, it should appear with a gray background._
 >- [ ] _**Archive and Unarchive**: Allow users to archive and unarchive emails that they have received._
@@ -37,7 +37,7 @@
 <br>
 
 **Progress**   
-![](https://geps.dev/progress/5)   
+![](https://geps.dev/progress/10)   
   
 <br>
 <br>

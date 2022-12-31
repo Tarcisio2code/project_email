@@ -17,7 +17,9 @@ function compose_email() {
 
   // Show compose view and hide other views
   document.querySelector('#emails-view').style.display = 'none';
+  document.querySelector('#email-full-view').style.display = 'none';
   document.querySelector('#compose-view').style.display = 'block';
+  
 
   // Clear out composition fields
   document.querySelector('#compose-recipients').value = '';
@@ -25,11 +27,44 @@ function compose_email() {
   document.querySelector('#compose-body').value = '';
 }
 
+function view_email(id){
+  fetch(`/emails/${id}`)
+  .then(response => response.json())
+  .then(email => {
+      // Show email body
+      document.querySelector('#emails-view').style.display = 'none';
+      document.querySelector('#compose-view').style.display = 'none';
+      document.querySelector('#email-full-view').style.display = 'block';
+
+      document.querySelector('#email-full-view').innerHTML = `
+        <ul class="list-group">
+          <li class="list-group-item border-0"><strong>From: </strong>${email.sender}</li>
+          <li class="list-group-item border-0"><strong>To: </strong>${email.email}</li>
+          <li class="list-group-item border-0"><strong>Subject: </strong>${email.subject}</li>
+          <li class="list-group-item border-0"><strong>Timestamp: </strong>${email.timestamp}</li>
+          <button class="btn btn-sm btn-outline-primary" id="replay">Replay</button>
+          <li class="list-group-item border-0"><hr></li>
+          <textarea class="list-group-item border-0">${email.body}</textarea>
+        </ul>
+      `;
+      // Change mail status
+      if(!email.read){
+        fetch(`/emails/${email.id}`, {
+          method: 'PUT',
+          body: JSON.stringify({
+              read: true
+          })
+        })
+      }
+  });
+}
+
 function load_mailbox(mailbox) {
   
   // Show the mailbox and hide other views
-  document.querySelector('#emails-view').style.display = 'block';
   document.querySelector('#compose-view').style.display = 'none';
+  document.querySelector('#email-full-view').style.display = 'none';
+  document.querySelector('#emails-view').style.display = 'block';
 
   // Show the mailbox name
   document.querySelector('#emails-view').innerHTML = `<h3>${mailbox.charAt(0).toUpperCase() + mailbox.slice(1)}</h3>`;
@@ -50,7 +85,7 @@ function load_mailbox(mailbox) {
         newEmail.className = currentMail.read ? 'read': 'unread';
         // Show email details
         newEmail.addEventListener('click', function() {
-            console.log('This newEmail has been clicked!')
+            view_email(currentMail.id);
         });
         document.querySelector('#emails-view').append(newEmail);
       });
