@@ -17,10 +17,10 @@
 >   - [x] _Each email should then be rendered in its own box (e.g. as a `div` with a border) that displays who the email is from, what the subject line is, and the timestamp of the email._
 >
 >   - [x] _If the email is unread, it should appear with a white background. If the email has been read, it should appear with a gray background._
->- [ ] _**Archive and Unarchive**: Allow users to archive and unarchive emails that they have received._
->   - [ ] _When viewing an Inbox email, the user should be presented with a button that lets them archive the email.When viewing an Archive email, the user should be presented with a button that lets them unarchive the email. This requirement does not apply to emails in the Sent mailbox._
->   - [ ] _Recall that you can send a PUT request to /emails/<email_id> to mark an email as archived or unarchived._
->   - [ ] _Once an email has been archived or unarchived, load the user’s inbox._
+>- [x] _**Archive and Unarchive**: Allow users to archive and unarchive emails that they have received._
+>   - [x] _When viewing an Inbox email, the user should be presented with a button that lets them archive the email.When viewing an Archive email, the user should be presented with a button that lets them unarchive the email. This requirement does not apply to emails in the Sent mailbox._
+>   - [x] _Recall that you can send a PUT request to /emails/<email_id> to mark an email as archived or unarchived._
+>   - [x] _Once an email has been archived or unarchived, load the user’s inbox._
 >
 >- [ ] _**Reply**: Allow users to reply to an email._
 >   - [ ] _When viewing an email, the user should be presented with a “Reply” button that lets them reply to the email._
@@ -37,7 +37,7 @@
 <br>
 
 **Progress**   
-![](https://geps.dev/progress/10)   
+![](https://geps.dev/progress/50)   
   
 <br>
 <br>
