@@ -31,7 +31,10 @@ function view_email(id){
   fetch(`/emails/${id}`)
   .then(response => response.json())
   .then(email => {
-      // Show email body
+      // Get the mailbox name
+      currentMailboxName = document.querySelector('h3').textContent;
+
+      // Show all mail details
       document.querySelector('#emails-view').style.display = 'none';
       document.querySelector('#compose-view').style.display = 'none';
       document.querySelector('#email-full-view').style.display = 'block';
@@ -47,6 +50,7 @@ function view_email(id){
           <textarea class="list-group-item border-0">${email.body}</textarea>
         </ul>
       `;
+
       // Change mail status
       if(!email.read){
         fetch(`/emails/${email.id}`, {
@@ -55,6 +59,23 @@ function view_email(id){
               read: true
           })
         })
+      }
+
+      // Email archive/unarchive button
+      if (currentMailboxName != 'Sent') {
+        const btn_archive = document.createElement('button');
+        btn_archive.innerHTML = email.archived ? 'Unarchive': "Archive";
+        btn_archive.className = email.archived ? "btn btn-sm btn-outline-primary": "btn btn-sm btn-outline-danger";
+        btn_archive.addEventListener('click', function() {
+          fetch(`/emails/${email.id}`, {
+            method: 'PUT',
+            body: JSON.stringify({
+                archived: !email.archived
+            })
+          })
+          .then(() => {load_mailbox('inbox')})
+        });
+        document.querySelector('#email-full-view').append(btn_archive);
       }
   });
 }
