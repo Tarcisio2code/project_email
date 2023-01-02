@@ -42,10 +42,9 @@ function view_email(id){
       document.querySelector('#email-full-view').innerHTML = `
         <ul class="list-group">
           <li class="list-group-item border-0"><strong>From: </strong>${email.sender}</li>
-          <li class="list-group-item border-0"><strong>To: </strong>${email.email}</li>
+          <li class="list-group-item border-0"><strong>To: </strong>${email.recipients}</li>
           <li class="list-group-item border-0"><strong>Subject: </strong>${email.subject}</li>
           <li class="list-group-item border-0"><strong>Timestamp: </strong>${email.timestamp}</li>
-          <button class="btn btn-sm btn-outline-primary" id="replay">Replay</button>
           <li class="list-group-item border-0"><hr></li>
           <textarea class="list-group-item border-0">${email.body}</textarea>
         </ul>
@@ -77,6 +76,24 @@ function view_email(id){
         });
         document.querySelector('#email-full-view').append(btn_archive);
       }
+
+      // Reply email
+      const btn_replay = document.createElement('button');
+      btn_replay.innerHTML = "Replay";
+      btn_replay.className = "btn btn-sm btn-outline-primary";
+      btn_replay.addEventListener('click', function() {
+        
+        compose_email()
+        
+        // Fill in composition fields
+        document.querySelector('#compose-sender').value = email.recipients;
+        document.querySelector('#compose-recipients').value = email.sender;
+        let mailSubject = email.subject
+        document.querySelector('#compose-subject').value = mailSubject.startsWith("Re:") ? mailSubject: `Re: ${mailSubject}`;
+        document.querySelector('#compose-body').value = `On ${email.timestamp} ${email.sender} wrote: \r\n${email.body}`;
+      })
+
+      document.querySelector('#email-full-view').append(btn_replay);
   });
 }
 

@@ -23,11 +23,11 @@
 >   - [x] _Once an email has been archived or unarchived, load the user’s inbox._
 >
 >- [ ] _**Reply**: Allow users to reply to an email._
->   - [ ] _When viewing an email, the user should be presented with a “Reply” button that lets them reply to the email._
->   - [ ] _When the user clicks the “Reply” button, they should be taken to the email composition form._
->   - [ ] _Pre-fill the composition form with the recipient field set to whoever sent the original email._
->   - [ ] _Pre-fill the subject line. If the original email had a subject line of foo, the new subject line should be Re: foo. (If the subject line already begins with Re: , no need to add it again.)_
->   - [ ] _Pre-fill the body of the email with a line like "On Jan 1 2020, 12:00 AM foo@example.com wrote:" followed by the original text of the email._
+>   - [x] _When viewing an email, the user should be presented with a “Reply” button that lets them reply to the email._
+>   - [x] _When the user clicks the “Reply” button, they should be taken to the email composition form._
+>   - [x] _Pre-fill the composition form with the recipient field set to whoever sent the original email._
+>   - [x] _Pre-fill the subject line. If the original email had a subject line of foo, the new subject line should be Re: foo. (If the subject line already begins with Re: , no need to add it again.)_
+>   - [x] _Pre-fill the body of the email with a line like "On Jan 1 2020, 12:00 AM foo@example.com wrote:" followed by the original text of the email._
 
 <br>
    
@@ -37,7 +37,7 @@
 <br>
 
 **Progress**   
-![](https://geps.dev/progress/50)   
+![](https://geps.dev/progress/95)   
   
 <br>
 <br>
