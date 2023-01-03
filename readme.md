@@ -10,7 +10,7 @@
 >   - [x] _You’ll likely want to make a POST request to /emails, passing in values for recipients, subject, and body._
 >   - [x] _Once the email has been sent, load the user’s sent mailbox._
 >
->- [ ] _**Mailbox**: When a user visits their Inbox, Sent mailbox, or Archive, load the appropriate mailbox._
+>- [X] _**Mailbox**: When a user visits their Inbox, Sent mailbox, or Archive, load the appropriate mailbox._
 >   - [x] _You’ll likely want to make a GET request to /emails/<mailbox> to request the emails for a particular mailbox._
 >   - [X] _When a mailbox is visited, the application should first query the API for the latest emails in that mailbox._
 >   - [x] _When a mailbox is visited, the name of the mailbox should appear at the top of the page (this part is done for you)._
@@ -22,7 +22,7 @@
 >   - [x] _Recall that you can send a PUT request to /emails/<email_id> to mark an email as archived or unarchived._
 >   - [x] _Once an email has been archived or unarchived, load the user’s inbox._
 >
->- [ ] _**Reply**: Allow users to reply to an email._
+>- [X] _**Reply**: Allow users to reply to an email._
 >   - [x] _When viewing an email, the user should be presented with a “Reply” button that lets them reply to the email._
 >   - [x] _When the user clicks the “Reply” button, they should be taken to the email composition form._
 >   - [x] _Pre-fill the composition form with the recipient field set to whoever sent the original email._

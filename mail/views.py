@@ -14,7 +14,8 @@ def index(request):
 
     # Authenticated users view their inbox
     if request.user.is_authenticated:
-        return render(request, "mail/inbox.html")
+        recipients = User.objects.filter(username__contains='@')
+        return render(request, "mail/inbox.html", {"recipients": recipients})
 
     # Everyone else is prompted to sign in
     else:
