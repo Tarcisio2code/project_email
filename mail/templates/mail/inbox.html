@@ -24,7 +24,7 @@
                 From: <input id="compose-sender" disabled class="form-control" value="{{ request.user.email }}">
             </div>
             <div class="form-group">
-                To: <input list="recipients" name="recipient" id="compose-recipients" class="form-control">
+                To: <input list="recipients" name="recipients" id="compose-recipients" class="form-control">
                 <datalist id="recipients">
                     {% for recipient in recipients %}
                         <option value="{{ recipient }}">
