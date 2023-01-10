@@ -7,7 +7,7 @@
             <div class="nav flex-column nav-pills me-3 shadow nav-border" id="v-pills-tab" role="tablist" aria-orientation="vertical">
                 <p class="h3 text-center m-3">{{ request.user.email }}</p>
                 <hr class="border border-secondary border-2 mt-0">
-                <button class="nav-link rounded-0 active" id="inbox" data-bs-toggle="pill" data-bs-target="#v-pills-inbox" type="button" role="tab" aria-selected="true"><i class="fa fa-inbox"></i>Inbox</button>
+                <button class="nav-link rounded-0 active" id="inbox" data-bs-toggle="pill" data-bs-target="#v-pills-inbox" type="button" role="tab" aria-selected="true"><i class="fa fa-inbox"></i>Inbox<span id="unread-emails" class="ms-3 translate-middle badge rounded-pill text-bg-info">{{ unreadEmails }}</span></button>
                 <button class="nav-link rounded-0" id="compose" data-bs-toggle="pill" data-bs-target="#v-pills-compose" type="button" role="tab" aria-selected="false"><i class="fa fa-pen"></i>Compose</button>
                 <button class="nav-link rounded-0" id="sent" data-bs-toggle="pill" data-bs-target="#v-pills-sent" type="button" role="tab" aria-selected="false"><i class="fa fa-paper-plane"></i>Sent</button>
                 <button class="nav-link rounded-0" id="archived" data-bs-toggle="pill" data-bs-target="#v-pills-archived" type="button" role="tab" aria-selected="false"><i class="fa fa-box-archive"></i>Archived</button>
@@ -15,9 +15,9 @@
             </div>
         </div>
     </div>
-
+    
     <div class="right-container flex-column w-100">
-        <div class="row">
+        <div class="row w-100">
             <div id="emails-view">
             </div>
 

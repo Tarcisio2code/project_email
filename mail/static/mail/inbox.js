@@ -28,6 +28,7 @@ function compose_email() {
 }
 
 function view_email(id){
+  
   fetch(`/emails/${id}`)
   .then(response => response.json())
   .then(email => {
@@ -52,6 +53,10 @@ function view_email(id){
 
       // Change mail status
       if(!email.read){
+
+        newCount = document.querySelector('#unread-emails').innerHTML-1;
+        document.querySelector('#unread-emails').innerHTML = newCount;
+
         fetch(`/emails/${email.id}`, {
           method: 'PUT',
           body: JSON.stringify({
@@ -105,7 +110,11 @@ function load_mailbox(mailbox) {
   document.querySelector('#emails-view').style.display = 'block';
 
   // Show the mailbox name
-  document.querySelector('#emails-view').innerHTML = `<h3>${mailbox.charAt(0).toUpperCase() + mailbox.slice(1)}</h3>`;
+  document.querySelector('#emails-view').innerHTML = `
+    <p class="h3 m-3">${mailbox.charAt(0).toUpperCase() + mailbox.slice(1)}</p>
+    <hr class="mt-0">
+    <div class="card overflow-auto shadow p-3" style="height: 500px" id="email-list"></div>
+  `;
 
   fetch(`/emails/${mailbox}`)
   .then(response => response.json())
@@ -113,19 +122,25 @@ function load_mailbox(mailbox) {
       // Create a div for each email in the mailbox
       emails.forEach(currentMail => {
         const newEmail = document.createElement('div');
-        newEmail.className = "list-group-item";
+        newEmail.setAttribute("role", "button");
+
+        // Set current email background-color and border style
+        newEmail.className = currentMail.read ? 'read border-bottom p-2': 'unread border-bottom p-2';
+
+        let readStatusIcon = currentMail.read ? "fa-envelope-open": "fa-envelope";
+        // Show basic email data
         newEmail.innerHTML = `
-          <h5>Sender: ${currentMail.sender}</h6>
-          <h6>Subject: ${currentMail.subject}</h5>
-          <p class = "text-muted">${currentMail.timestamp}</p>
+          <spam class = "d-inline-block text-truncate fw-bolder pe-2">${currentMail.sender}</spam>
+          <spam class = "d-inline-block text-truncate w-50">${currentMail.subject}</spam>
+          <spam class = "d-inline-block text-muted float-end">${currentMail.timestamp}<i class="d-inline-block fa ${readStatusIcon} mx-2"></i></spam>
+          
         `;
-        // Change current email background-color
-        newEmail.className = currentMail.read ? 'read': 'unread';
+        
         // Show email details
         newEmail.addEventListener('click', function() {
             view_email(currentMail.id);
         });
-        document.querySelector('#emails-view').append(newEmail);
+        document.querySelector('#email-list').append(newEmail);
       });
 
       // ... do something else with email ...

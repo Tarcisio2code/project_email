@@ -15,7 +15,8 @@ def index(request):
     # Authenticated users view their inbox
     if request.user.is_authenticated:
         recipients = User.objects.filter(username__contains='@')
-        return render(request, "mail/inbox.html", {"recipients": recipients})
+        unreadEmails = Email.objects.filter(user=request.user, read=False).count()
+        return render(request, "mail/inbox.html", {"recipients": recipients, "unreadEmails": unreadEmails})
 
     # Everyone else is prompted to sign in
     else:
