@@ -1,5 +1,10 @@
 textarea {
-    min-height: 400px;
+    resize: none;
+    min-height: 270px;
+}
+
+textarea:focus {
+    outline: none
 }
 
 .read {

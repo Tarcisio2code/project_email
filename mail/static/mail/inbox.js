@@ -33,7 +33,7 @@ function view_email(id){
   .then(response => response.json())
   .then(email => {
       // Get the mailbox name
-      currentMailboxName = document.querySelector('h3').textContent;
+      currentMailboxName = document.querySelector('#mailbox-title').textContent;
 
       // Show all mail details
       document.querySelector('#emails-view').style.display = 'none';
@@ -41,14 +41,18 @@ function view_email(id){
       document.querySelector('#email-full-view').style.display = 'block';
 
       document.querySelector('#email-full-view').innerHTML = `
-        <ul class="list-group">
-          <li class="list-group-item border-0"><strong>From: </strong>${email.sender}</li>
-          <li class="list-group-item border-0"><strong>To: </strong>${email.recipients}</li>
-          <li class="list-group-item border-0"><strong>Subject: </strong>${email.subject}</li>
-          <li class="list-group-item border-0"><strong>Timestamp: </strong>${email.timestamp}</li>
-          <li class="list-group-item border-0"><hr></li>
-          <textarea class="list-group-item border-0">${email.body}</textarea>
-        </ul>
+        <div class="card shadow m-3 p-3" style="height: 570px">
+            <div class="card-body" id="email-container">
+                <ul class="list-group">
+                  <li class="list-group-item border-0"><strong>From: </strong>${email.sender}</li>
+                  <li class="list-group-item border-0"><strong>To: </strong>${email.recipients}</li>
+                  <li class="list-group-item border-0"><strong>Subject: </strong>${email.subject}</li>
+                  <li class="list-group-item border-0"><strong>Timestamp: </strong>${email.timestamp}</li>
+                  <li class="list-group-item border-0"><hr></li>
+                  <textarea class="list-group-item border-0">${email.body}</textarea>
+                </ul>
+            </div>
+        </div>
       `;
 
       // Change mail status
@@ -65,27 +69,10 @@ function view_email(id){
         })
       }
 
-      // Email archive/unarchive button
-      if (currentMailboxName != 'Sent') {
-        const btn_archive = document.createElement('button');
-        btn_archive.innerHTML = email.archived ? 'Unarchive': "Archive";
-        btn_archive.className = email.archived ? "btn btn-sm btn-outline-primary": "btn btn-sm btn-outline-danger";
-        btn_archive.addEventListener('click', function() {
-          fetch(`/emails/${email.id}`, {
-            method: 'PUT',
-            body: JSON.stringify({
-                archived: !email.archived
-            })
-          })
-          .then(() => {load_mailbox('inbox')})
-        });
-        document.querySelector('#email-full-view').append(btn_archive);
-      }
-
       // Reply email
       const btn_replay = document.createElement('button');
       btn_replay.innerHTML = "Replay";
-      btn_replay.className = "btn btn-sm btn-outline-primary";
+      btn_replay.className = "btn btn-sm btn-primary mt-2 mx-2";
       btn_replay.addEventListener('click', function() {
         
         compose_email()
@@ -97,8 +84,25 @@ function view_email(id){
         document.querySelector('#compose-subject').value = mailSubject.startsWith("Re:") ? mailSubject: `Re: ${mailSubject}`;
         document.querySelector('#compose-body').value = `On ${email.timestamp} ${email.sender} wrote: \r\n${email.body}`;
       })
+      document.querySelector('#email-container').append(btn_replay);
 
-      document.querySelector('#email-full-view').append(btn_replay);
+      // Email archive/unarchive button
+      if (currentMailboxName != 'Sent') {
+        const btn_archive = document.createElement('button');
+        btn_archive.innerHTML = email.archived ? 'Unarchive': "Archive";
+        btn_archive.className = email.archived ? "btn btn-sm btn-warning mt-2": "btn btn-sm btn-warning mt-2";
+        btn_archive.addEventListener('click', function() {
+          fetch(`/emails/${email.id}`, {
+            method: 'PUT',
+            body: JSON.stringify({
+                archived: !email.archived
+            })
+          })
+          .then(() => {load_mailbox('inbox')})
+        });
+        document.querySelector('#email-container').append(btn_archive);
+      }
+
   });
 }
 
@@ -111,7 +115,7 @@ function load_mailbox(mailbox) {
 
   // Show the mailbox name
   document.querySelector('#emails-view').innerHTML = `
-    <p class="h3 m-3">${mailbox.charAt(0).toUpperCase() + mailbox.slice(1)}</p>
+    <p class="h3 m-3" id="mailbox-title">${mailbox.charAt(0).toUpperCase() + mailbox.slice(1)}</p>
     <hr class="mt-0">
     <div class="card overflow-auto shadow p-3" style="height: 500px" id="email-list"></div>
   `;
