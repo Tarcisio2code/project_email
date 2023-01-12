@@ -21,11 +21,6 @@ textarea:focus {
     inset 0 -1px 3px 1px rgb(60 64 67 / 15%);
 }
 
-#access-form{
-    align-items: center;
-    justify-content: center;
-}
-
 .container{
     display: flex;
     margin-left: 0px!important;
@@ -54,4 +49,13 @@ textarea:focus {
 
 .fa {
     margin-right: 1rem;
+}
+
+#access-form{
+    align-items: center;
+    justify-content: center;
+}
+
+#email-list, #compose-container {
+    height: 500px
 }

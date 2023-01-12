@@ -117,7 +117,7 @@ function load_mailbox(mailbox) {
   document.querySelector('#emails-view').innerHTML = `
     <p class="h3 m-3" id="mailbox-title">${mailbox.charAt(0).toUpperCase() + mailbox.slice(1)}</p>
     <hr class="mt-0">
-    <div class="card overflow-auto shadow p-3" style="height: 500px" id="email-list"></div>
+    <div class="card overflow-auto shadow p-3" id="email-list"></div>
   `;
 
   fetch(`/emails/${mailbox}`)
@@ -134,7 +134,7 @@ function load_mailbox(mailbox) {
         let readStatusIcon = currentMail.read ? "fa-envelope-open": "fa-envelope";
         // Show basic email data
         newEmail.innerHTML = `
-          <spam class = "d-inline-block text-truncate fw-bolder pe-2">${currentMail.sender}</spam>
+          <spam class = "d-inline-block text-truncate fw-bolder pe-2" style="width: 160px;">${currentMail.sender}</spam>
           <spam class = "d-inline-block text-truncate w-50">${currentMail.subject}</spam>
           <spam class = "d-inline-block text-muted float-end">${currentMail.timestamp}<i class="d-inline-block fa ${readStatusIcon} mx-2"></i></spam>
           
@@ -144,10 +144,9 @@ function load_mailbox(mailbox) {
         newEmail.addEventListener('click', function() {
             view_email(currentMail.id);
         });
+        
         document.querySelector('#email-list').append(newEmail);
       });
-
-      // ... do something else with email ...
   });
 }
 
