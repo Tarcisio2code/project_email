@@ -19,7 +19,13 @@ function compose_email() {
   document.querySelector('#emails-view').style.display = 'none';
   document.querySelector('#email-full-view').style.display = 'none';
   document.querySelector('#compose-view').style.display = 'block';
-  
+
+  if (document.querySelector("#compose-view").querySelectorAll("#mailbox-title").length === 0){
+    document.querySelector('#compose-view').insertAdjacentHTML("afterbegin", `
+      <p class="h3 m-3" id="mailbox-title">New Mail</p>
+      <hr class="mt-0">
+    `);
+  }
 
   // Clear out composition fields
   document.querySelector('#compose-recipients').value = '';
@@ -167,7 +173,9 @@ function send_email(event){
   })
   .then(response => response.json())
   .then(result => {
-      // Redirect to sent mailbox
-      load_mailbox('sent');
+    console.log(result);
   });
+  // Redirect to sent mailbox
+  event.preventDefault()
+  load_mailbox('sent');
 }
