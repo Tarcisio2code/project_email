@@ -50,4 +50,4 @@ _According to HarvardX - Web Programming with Python and JavaScript Course_
 
 <br>
 
-<a href="https://www.youtube.com/channel/UCBnFL0ElYDlA_EYy6FhDmDQ" target="_blank"><img border="0" width="3%" src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/09/YouTube_full-color_icon_%282017%29.svg/2560px-YouTube_full-color_icon_%282017%29.svg.png" alt="Watch it on youtube"/> _Watch it on youtube_</a>
+<a href="https://youtu.be/64b5M3ra83E" target="_blank"><img border="0" width="3%" src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/09/YouTube_full-color_icon_%282017%29.svg/2560px-YouTube_full-color_icon_%282017%29.svg.png" alt="Watch it on youtube"/> _Watch it on youtube_</a>
