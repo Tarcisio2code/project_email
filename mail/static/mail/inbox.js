@@ -9,6 +9,9 @@ document.addEventListener('DOMContentLoaded', function() {
   // Submit handler
   document.querySelector("#compose-form").addEventListener('submit', send_email);
 
+  // Hide mailbox alert message
+  document.getElementById("mailbox-message").style.visibility = "hidden";
+
   // By default, load the inbox
   load_mailbox('inbox');
 });
@@ -113,7 +116,13 @@ function view_email(id){
 }
 
 function load_mailbox(mailbox) {
-  
+  // Hide mailbox alert message
+  if (document.getElementById("mailbox-message").style.visibility === "visible"){
+      const delay = mailbox === "sent" ? 3000 : 0;
+      console.log(delay);
+      setTimeout(() => {document.getElementById("mailbox-message").style.visibility = "hidden"}, delay);
+  }
+
   // Show the mailbox and hide other views
   document.querySelector('#compose-view').style.display = 'none';
   document.querySelector('#email-full-view').style.display = 'none';
@@ -143,7 +152,6 @@ function load_mailbox(mailbox) {
           <spam class = "d-inline-block text-truncate fw-bolder pe-2" style="width: 160px;">${currentMail.sender}</spam>
           <spam class = "d-inline-block text-truncate w-50">${currentMail.subject}</spam>
           <spam class = "d-inline-block text-muted float-end">${currentMail.timestamp}<i class="d-inline-block fa ${readStatusIcon} mx-2"></i></spam>
-          
         `;
         
         // Show email details
@@ -157,6 +165,7 @@ function load_mailbox(mailbox) {
 }
 
 function send_email(event){
+  event.preventDefault();
   // Get form fields values
   const recipients = document.querySelector('#compose-recipients').value;
   const subject = document.querySelector('#compose-subject').value;
@@ -173,9 +182,15 @@ function send_email(event){
   })
   .then(response => response.json())
   .then(result => {
-    console.log(result);
+    // Show alert message. If successful, redirect to the sent mailbox.
+    if (result.message){
+      document.getElementById("mailbox-message").innerHTML = result.message;
+      document.getElementById("mailbox-message").className = "alert alert-success d-flex position-absolute justify-content-center align-items-center end-0 w-auto mt-3 me-5 p-1";
+      setTimeout(() => {document.getElementById('sent').click(), 100});
+    } else {
+      document.getElementById("mailbox-message").innerHTML = result.error;
+      document.getElementById("mailbox-message").className = "alert alert-danger d-flex position-absolute justify-content-center align-items-center end-0 w-auto mt-3 me-5 p-1";
+    }
+    document.getElementById("mailbox-message").style.visibility = "visible";
   });
-  // Redirect to sent mailbox
-  event.preventDefault()
-  load_mailbox('sent');
 }
